@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+<FrameLayout
+             android:orientation="vertical"
+             android:id="@+id/panel"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+</FrameLayout>
+    <LinearLayout
+            android:id="@+id/first"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/second"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+    </LinearLayout>
+
+</android.support.v4.widget.SlidingPaneLayout>

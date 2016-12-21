@@ -1,0 +1,187 @@
+<html>
+    <head>
+    	<style type="text/css">
+            /*
+    		@font-face {
+			    font-family: 'Roboto';
+			    src: url('fonts/Roboto-Regular.ttf') format('truetype');
+			    font-weight: normal;
+			    font-style: normal;
+			}
+			@font-face {
+			    font-family: 'Alegreya';
+			    src: url('fonts/AlegreyaRegular.ttf') format('truetype');
+			    font-weight: normal;
+			    font-style: normal; 
+			}
+            */
+			body{line-height:25px;font-family:serif;font-size:18px; padding: 0; margin:0; color: #4A4A4A;}
+			table{border-collapse:collapse;font-size:18px;}
+			#passage{border-bottom:1px dotted #aaa;margin-bottom:10px;padding-bottom:5px;margin-left:10px;margin-right:10px;}
+			#passage_text{margin-top:5px; font-family: serif;color: #4A4A4A;}
+			#question{font-size: 16px; line-height: 22px; font-family: serif;color: #4A4A4A;}
+			#question .info {padding-top: 18px; font-size: 12px; line-height: 15px; font-weight: bold; font-family: 'Roboto', sans-serif;
+			color: #999; text-transform: uppercase; letter-spacing: 0.04em;}
+			#question td, #passage_text td{border:1px solid #aaa;padding:5px 10px; font-size: 16px; line-height: 22px;}
+			.img_wrapper {text-align: center;}
+			#question img, #passage_text img {margin-top:10px;max-width:100%;max-height:250px;}
+			#assertion{margin-top:5px;margin-bottom:10px; font-size: 16px; font-family: serif;color: #4A4A4A;}
+			#reason{margin-top:5px; font-size: 16px; font-family: serif;color: #4A4A4A;}
+			#mx_lists{margin-top:10px;margin-left:10px;margin-right:10px;}
+			#mx_lists>div:first-child{margin-bottom:10px;}
+			#mx_lists table{width:100%;margin-top:5px;}
+			#mx_lists td{border:1px solid #aaa;vertical-align:middle;padding:5px 10px; font-size: 16px; font-family: serif;}
+			#mx_lists td:first-child{width:30px;text-align:center;padding-left:0px;padding-right:0px;}
+			#options{margin:25px 0 0;border-collapse:collapse;width:100%;}
+			#options td{border-top:1px solid #e8e8e8;border-bottom:1px solid #e8e8e8;vertical-align:top;padding-top:18px;padding-bottom:18px;}
+			#options td:first-child{width:40px;text-align:left; padding-left:18px;}
+			#options tr.selected {background:#EEF9FD;}
+			.label{color:#fff;font-weight:bold;line-height:28px;width:28px;text-align:center;background:#4d4d4d;display:inline-block;}
+			.label.selected{background:#55BBEA;}
+			.option{padding-left:0;padding-right:18px; font-size: 16px; font-family: serif;color: #4A4A4A;}
+			.option img{max-width:100%; max-height:150px; margin-bottom:5px;}
+		</style>
+    </head>
+    <body>
+    	<div style="padding: 0 18px;">
+	        <div id="passage" style="display:none;"><b>Passage</b><div id="passage_text"></div></div>
+	        <div id="question"></div>
+            <div id="mx_lists" style="margin-left:0; margin-right:0; "><!-- display:none; -->
+                <<div>
+                    <<b>List I</b>
+                    <div>        <table>                        <tr>                <td>A</td>                <td>Boron</td>            </tr>                        <tr>                <td>B</td>                <td>Silicon</td>            </tr>                        <tr>                <td>C</td>                <td>Tin</td>            </tr>                        <tr>                <td>D</td>                <td>Lead</td>            </tr>                    </table>    </div>
+                    <br/>
+                   <b>List II</b>
+                    <div>        <table>                        <tr>                <td>1</td>                <td>Stable hydride</td>            </tr>                        <tr>                <td>2</td>                <td>easily hydrolysed tetrahalide</td>            </tr>                        <tr>                <td>3</td>                <td>amphoteric oxide</td>            </tr>                        <tr>                <td>4</td>                <td>forms weak acid</td>            </tr>                        <tr>                <td>5</td>                <td>ionic and reducing dihalide</td>            </tr>                    </table>    </div>
+                </div>
+            </div>
+        </div>
+        <table id="options" style="">
+            <tr id="o1" style=""><td><span class="label" id="label1">A</span></td><td class="option" id="option1"></td></tr>
+            <tr id="o2" style=""><td><span class="label" id="label2">B</span></td><td class="option" id="option2"></td></tr>
+            <tr id="o3" style=""><td><span class="label" id="label3">C</span></td><td class="option" id="option3"></td></tr>
+            <tr id="o4" style=""><td><span class="label" id="label4">D</span></td><td class="option" id="option4"></td></tr>
+            <tr id="o5" style=""><td><span class="label" id="label5">C</span></td><td class="option" id="option5"></td></tr>
+            <tr id="o6" style=""><td><span class="label" id="label6">D</span></td><td class="option" id="option6"></td></tr>
+        </table>
+    
+		<script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+	    <script type="text/javascript">
+	        MathJax.Hub.Config({
+	          showProcessingMessages: false,
+	          messageStyle: "none",
+		        tex2jax: {
+	                inlineMath: [['$$','$$'], ['\\(','\\)']],
+	                displayMath: [['$$$','$$$'], ['\\(','\\)']]
+	            },
+	            styles: {
+					".MathJax_SVG svg > g, .MathJax_SVG_Display svg > g": {
+						fill: "#4A4A4A",
+						stroke: "#4A4A4A"
+					}
+				}
+	        });
+	        MathJax.Hub.Register.StartupHook("End", function(){
+	        	if ("jsObject" in window)
+	        		jsObject.mathjax_done();
+	        	else
+	        		console.log("mathjax done");
+	        });
+	
+	        var passage_holder = document.getElementById("passage");
+	        var passage = document.getElementById("passage_text");
+	        var question = document.getElementById("question");
+	        var mx_holder = document.getElementById("mx_lists");
+	        var options_holder = document.getElementById("options");
+	        var options = new Array(4);
+	        options[0] = document.getElementById("option1");
+	        options[1] = document.getElementById("option2");
+	        options[2] = document.getElementById("option3");
+	        options[3] = document.getElementById("option4");
+	        options[4] = document.getElementById("option5");
+	        options[5] = document.getElementById("option6");
+	        var labels = new Array(4);
+	        labels[0] = document.getElementById("label1");
+	        labels[1] = document.getElementById("label2");
+	        labels[2] = document.getElementById("label3");
+	        labels[3] = document.getElementById("label4");
+	        labels[4] = document.getElementById("label5");
+	        labels[5] = document.getElementById("label6");
+
+	        var option_items = new Array(4);
+	        option_items[0] = document.getElementById("o1");
+	        option_items[1] = document.getElementById("o2");
+	        option_items[2] = document.getElementById("o3");
+	        option_items[3] = document.getElementById("o4");
+	        option_items[4] = document.getElementById("o5");
+	        option_items[5] = document.getElementById("o6");
+
+	        option_items[0].onclick = function(){onOptionClick(0);};
+	        option_items[1].onclick = function(){onOptionClick(1);};
+	        option_items[2].onclick = function(){onOptionClick(2);};
+	        option_items[3].onclick = function(){onOptionClick(3);};
+	        option_items[4].onclick = function(){onOptionClick(4);};
+	        option_items[5].onclick = function(){onOptionClick(5);};
+
+	        function onOptionClick(k) {
+                if ("jsObject" in window)
+	        		jsObject.option_click(k);
+	        	else
+	        		console.log("oclick "+k);
+	        }
+		
+	        function setPassage(data) {
+	            passage.innerHTML = data;
+	            passage_holder.style.display = "block";
+	        }
+	
+	        function hidePassage() {
+	            passage.innerHTML = "";
+	            passage_holder.style.display = "none";
+	        }
+		
+	        function setQuestion(data) {
+	            question.innerHTML = data;
+	        }
+		
+	        function setMxLists(html) {
+	            mx_holder.innerHTML = html;
+	            mx_holder.style.display = "block";
+	        }
+		
+	        function hideMxLists() {
+	            mx_holder.innerHTML = "";
+	            mx_holder.style.display = "none";
+	        }
+		
+	        function setOption(i, data, selected) {
+	            options[i].innerHTML = data;
+	            option_items[i].style.display = "";
+	            options_holder.style.display = "block";
+
+	            setOptionStatus(i, selected);
+	        }
+	
+	        function setOptionStatus(i, selected) {
+	            if (selected) {
+	                labels[i].setAttribute("class","label selected");
+	                option_items[i].setAttribute("class","selected");
+	            } else {
+	                labels[i].setAttribute("class","label");
+	                option_items[i].setAttribute("class","");
+	            }
+	        }
+	
+	        function hideOptions() {
+                for (var i=0; i<6; i++) {
+                    option_items[i].style.display = "none";
+                }
+	            options_holder.style.display = "none";
+	        }
+
+	        function showOptions() {
+	            options_holder.style.display = "table";
+	        }
+	    </script>
+    </body>
+</html>

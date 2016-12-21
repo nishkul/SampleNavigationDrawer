@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="css/test_series.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    </head>
+    <body>
+        <div id="question-wrapper"></div>
+
+        <script type="text/template" class="swig-tpl" data-tpl="question">
+            <div class="question js-question" data-section-qid={{section_question_id}} data-style="{{question_style}}">
+                <div class="content">
+                    {% if passage %}
+                        <h2>Passage</h2>
+                        {{passage|clean_html|safe}}
+                    {% endif %}
+
+                    {% if passage_image %}
+                        <img src="{{passage_image}}"/>
+                    {% endif %}
+
+                    {{question|clean_html|safe}}
+
+                    {% if assertion %}
+                        <h2>Assertion</h2>
+                        {{assertion|clean_html|safe}}
+                    {% endif %}
+
+                    {% if reason %}
+                        <h2>Reason</h2>
+                        {{reason|clean_html|safe}}
+                    {% endif %}
+                    
+                    {% if image %}
+                        <img src="{{image}}"/>
+                    {% endif %}
+
+                    {% if question_style == "matrix" %}
+                        <h2>List I</h2>
+                        <div>
+                            <table class="mx-list-table">
+                                {% for item in mx_l1 %}
+                                    <tr>
+                                        <td class="label">{{loop.index|int_to_char('upper')}}</td>
+                                        <td>
+                                            {{item|clean_html|safe}}
+                                            {% if mx_l1_images[loop.index0] %}
+                                                <img src="{{mx_l1_images[loop.index0]}}" />
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                        <h2>List II</h2>
+                        <div>
+                            <table class="mx-list-table">
+                                {% for item in mx_l2 %}
+                                    <tr>
+                                        <td class="label">{{loop.index}}</td>
+                                        <td>
+                                            {{item|clean_html|safe}}
+                                            {% if mx_l2_images[loop.index0] %}
+                                                <img src="{{mx_l2_images[loop.index0]}}" />
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% if question_style == "multiple correct" %}
+                    <div class="info">This question has multiple correct options</div>
+                {% endif %}
+
+                {% if question_style == "matrix" %}
+                    <div class="info">Select the matching options</div>
+                {% endif %}
+
+                {% if question_style == "blank" %}
+                    <div class="info">Answer</div>
+                {% endif %}
+
+                {% if question_style == "matrix" %}
+                    <div class="matrix-options-wrapper">
+                        <table>
+                            {% set mxl2_length = mx_l2.length %}
+                            {% for mx_l1_item in mx_l1 %}
+                                {% set parent_loop = loop %}
+                                <tr>
+                                    <td>
+                                        <span class="option-label">{{loop.index|int_to_char('upper')}}</span>
+                                    </td>
+                                    <td class="matrix-choices">
+                                        {% for mx_l2_item in mx_l2 %}
+                                            {% set choice_value = parent_loop.index0 * mxl2_length + loop.index0 %}
+                                                <label class="js-matrix-choice {% if selected_choices.indexOf(choice_value) > -1 %}selected{% endif %}" data-value="{{choice_value}}" style="width:{{(100 / mxl2_length)}}%;">
+                                                    {{ loop.index }}
+                                                </label>
+                                        {% endfor %}
+                                        <div class="clr"></div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                {% elif question_style == "blank" %}
+                    <div class="blank-input-wrapper">
+                        <input type="text" name="choices" value="{{selected_choices}}" class="js-blank-input" placeholder="Type your answer here"/>
+                    </div>
+                {% else %}
+                    <table class="options-list">
+                        {% for choice in choices %}
+                            <tr class="js-option-list-item {% if selected_choices.indexOf(choice.id) > -1 %}selected{% endif %}" data-choice-id="{{choice.id}}">
+                                <td>
+                                    <span class="label">{{choice.label}}</span>
+                                </td>
+                                <td class="option">
+                                    {{choice.choice|clean_html|safe}}
+                                    {% if choice.image %}
+                                        <img src="{{choice.image}}"/>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </script>
+
+        <script type="text/javascript" src="js/zepto.min.js"></script>
+        <script type="text/javascript" src="js/swig-1.4.2.min.js"></script>
+        <script type="text/javascript" src="js/swig-filters.js"></script>
+        <script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+        <script type="text/javascript" src="js/test_series.js"></script>
+    </body>
+</html>

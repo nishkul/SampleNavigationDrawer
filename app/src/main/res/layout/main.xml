@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+        >
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <WebView
+            android:layout_below="@+id/toolbar"
+            android:id="@+id/webview_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    </WebView>
+
+    <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:id="@+id/foolting"
+            android:layout_margin="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:textAlignment="textEnd"
+            android:layout_height="match_parent"/>
+
+    <!--<android.support.v4.widget.SlidingPaneLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:id="@+id/crossfade_content"-->
+    <!--android:layout_height="match_parent">-->
+    <!--<FrameLayout-->
+    <!--android:id="@+id/frame_container"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:background="@color/colorPrimaryDark"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@id/toolbar">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/txtLabel"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:text="Test"-->
+    <!--android:textSize="16sp"/>-->
+    <!--</FrameLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/largeLabel"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:orientation="vertical"-->
+    <!--android:background="@color/colorAccent"-->
+    <!--android:layout_height="match_parent"></LinearLayout>-->
+    <!--</android.support.v4.widget.SlidingPaneLayout>-->
+</RelativeLayout>

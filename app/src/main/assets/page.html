@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; user-scalable=0;"/>
+    <title>My HTML</title>
+</head>
+<body>
+<h1 onclick="">MyHTML </h1>
+<p id="mytext">Hello!</p>
+<input type="button" value="Say hello" onClick="showAndroidToast(obj)">
+<input type="button" value="Open Dialog" onClick="openAndroidDialog()"/>
+
+<script language="javascript">
+
+var text = "";
+var i = 0;
+function staticloop(){
+while (i < 10) {
+text += "<br>The number is " + i;
+i++;
+}
+document.getElementById("main").innerHTML = text;
+}
+
+var obj = "";
+if(javaObject.getData() != ""){
+obj = JSON.parse(javaObject.getData());
+}
+
+
+
+
+function showAndroidToast(toast) {
+
+javaObject.showToast(toast);
+}
+
+function openAndroidDialog() {
+javaObject.openAndroidDialog();
+}
+
+function callFromActivity(msg){
+document.getElementById("mytext").innerHTML = msg;
+}
+
+</script>
+<div id="main" onload="staticloop()">
+
+</div>
+</body>
+</html>

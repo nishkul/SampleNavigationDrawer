@@ -1,0 +1,61 @@
+
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="css/question_bank.css"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <style type="text/css">
+        body {
+            background: #fff;
+        }
+        .question-item {
+            margin: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="questions_wrapper">Loading question...</div>
+<script type="text/javascript" src="js/zepto-custom.min.js"></script>
+<script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript">
+    MathJax.Hub.Config({
+        showProcessingMessages: false,
+        showMathMenu: false,
+        messageStyle: "none",
+        tex2jax: {
+            inlineMath: [['$$','$$'], ['\\(','\\)']],
+            displayMath: [['$$$','$$$'], ['\\(','\\)']]
+        },
+        styles: {
+            ".MathJax_SVG svg > g, .MathJax_SVG_Display svg > g": {
+                fill: "#4A4A4A ",
+                stroke: "#4A4A4A "
+            }
+        }
+    });
+    MathJax.Hub.Register.StartupHook("End", function(){
+        if ("jsObject" in window) {
+            console.log("jsObject exists");
+        }
+
+        if ("jsObject" in window)
+            jsObject.mathjax_done();
+        else
+            console.log("mathjax done");
+    });
+
+    function setData(data) {
+        console.log("set data invoked");
+        console.log(data);
+        $("#questions_wrapper").html(data);
+        setTimeout(function(){
+            MathJax.Hub.Queue(['Typeset',MathJax.Hub]);
+        }, 0);
+    }
+</script>
+</body>
+</html>

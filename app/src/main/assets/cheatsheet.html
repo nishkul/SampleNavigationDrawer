@@ -1,0 +1,174 @@
+<html>
+<head>
+    <style type="text/css">
+        body{font-size: 14px; line-height:1.4; font-family: 'Roboto', sans-serif; padding: 0;
+        margin:0; color: #4A4A4A; background: #F8F8F8;}
+        table{border-collapse:collapse;font-size:16px;}
+        .fl{ float:left;}
+        .fr{ float: right;}
+        .clr {clear:both;}
+        .section-heading {
+        font-size: 14px; line-height: 18px; font-weight:bold; text-transform: uppercase; color:
+        #55bbea;
+        padding: 18px 18px 0 0; margin-left: 18px;
+        }
+        .sheet-item { margin: 18px 0 0 0; padding: 18px; background: #fff; box-shadow: 0 2px 4px
+        rgba(0, 0, 0, 0.1); border-top: 5px solid #ddd; }
+        .sheet-item .header { height: 32px; margin-bottom: 18px;}
+        .sheet-item .header .num {
+        font-size: 14px; line-height: 32px; font-weight:bold; color: #4A4A4A;
+        padding-right: 16px; margin-right: 16px; border-right: 1px solid #EDEDED; float: left; }
+        .sheet-item .header .title { font-size: 14px; line-height: 32px; font-weight:normal;
+        text-transform: uppercase; color: #4A4A4A; margin-right: 40px; }
+        .sheet-item .header .bookmark {
+        display: block; text-decoration: none; cursor: pointer; width: 32px; height: 32px; float:
+        right;
+        background-image: url(images/bookmark_light.png); background-size: auto 20px;
+        background-position: center; background-repeat: no-repeat;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        -webkit-tap-highlight-color: transparent;
+        }
+        .sheet-item .header .bookmark.active { background-image: url(images/bookmark.png); }
+
+        .sheet-item.definition { border-color: #b88bbe;}
+        .sheet-item.definition .header .title { color: #b88bbe;}
+
+        .sheet-item.formula { border-color: #71cac4;}
+        .sheet-item.formula .header .title { color: #71cac4;}
+
+        .sheet-item.shortcut { border-color: #f27286;}
+        .sheet-item.shortcut .header .title { color: #f27286;}
+
+        .sheet-item.result { border-color: #92c4ea;}
+        .sheet-item.result .header .title { color: #92c4ea;}
+
+        .sheet-item.diagram { border-color: #c8c8c8;}
+        .sheet-item.diagram .header .title { color: #c8c8c8;}
+
+        .sheet-item.law { border-color: #2490ce;}
+        .sheet-item.law .header .title { color: #2490ce;}
+
+        .sheet-item.example { border-color: #2490ce;}
+        .sheet-item.example .header .title { color: #2490ce;}
+
+        .sheet-item .sheet-content { padding-right: 18px; }
+        .sheet-item .heading { font-size: 16px; line-height: 18px; font-weight:bold; font-family:
+        serif; color: #4A4A4A; margin-bottom: 10px; }
+        .sheet-item .img { margin-bottom:18px; text-align: center; }
+        .sheet-item .img img { max-width:100%; }
+        .sheet-item .text { font-family: serif; font-size: 14px; line-height: 18px; color: #4A4A4A;
+        word-wrap: break-word; }
+        .sheet-item .text td { border:1px solid #aaa; padding:5px 10px; font-size: 14px;
+        line-height: 18px; font-family: serif;}
+    </style>
+</head>
+<body>
+<div id="sheets_wrapper">
+    <!-- <div class="section-heading">Motion under gravity</div>
+
+    <div class="sheet-item definition">
+        <div class="header">
+            <a class="bookmark" id="bookmark_2" data-id="2" data-is-bookmarked="0" data-in-progress="0"></a>
+            <div class="title">#1 Definition</div>
+            <div class="clr"></div>
+        </div>
+        <div class="sheet-content">
+            <div class="heading">Average Speed</div>
+            <div class="img"><img src="https://haygot.s3.amazonaws.com/cheatsheet/14.png" /></div>
+            <div class="text">
+                $$\displaystyle&nbsp;\text{Average speed} = \frac{\text{total distance}}{\text{total time}}$$
+            </div>
+        </div>
+    </div> -->
+</div>
+
+<script type="text/javascript" src="js/zepto-custom.min.js"></script>
+<script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript">
+	        MathJax.Hub.Config({
+				showProcessingMessages: false,
+				showMathMenu: false,
+				messageStyle: "none",
+				tex2jax: {
+					inlineMath: [['$$','$$'], ['\\(','\\)']],
+					displayMath: [['$$$','$$$'], ['\\(','\\)']]
+				},
+				styles: {
+					".MathJax_SVG svg > g, .MathJax_SVG_Display svg > g": {
+						fill: "#4A4A4A",
+						stroke: "#4A4A4A"
+					}
+				}
+	        });
+	        MathJax.Hub.Register.StartupHook("End", function(){
+	        	if ("jsObject" in window)
+	        		jsObject.mathjax_done();
+	        	else
+	        		console.log("mathjax done");
+	        });
+
+	        $(function() {
+	        	$(document).on('click', '.bookmark', on_bookmark_clicked);
+	        });
+
+	        function on_bookmark_clicked(e) {
+	        	var $bookmark_icon = $(this).closest(".bookmark");
+        		var id = $bookmark_icon.data("id") || 0;
+        		var is_bookmarked = $bookmark_icon.data("is-bookmarked") || 0;
+        		var in_progress = $bookmark_icon.data("in-progress") || 0;
+
+        		if (in_progress) {
+        			return;
+        		}
+
+        		$bookmark_icon.data("in-progress", 1);
+
+        		if (is_bookmarked) {
+        			$bookmark_icon.data("is-bookmarked", 0);
+        			$bookmark_icon.removeClass("active");
+        			remove_bookmark(id);
+        		} else {
+        			$bookmark_icon.data("is-bookmarked", 1);
+        			$bookmark_icon.addClass("active");
+        			add_bookmark(id);
+        		}
+	        }
+
+	        function add_bookmark(id) {
+	        	if ("jsObject" in window)
+	        		jsObject.add_bookmark(id);
+	        }
+
+	        function remove_bookmark(id) {
+	        	if ("jsObject" in window)
+	        		jsObject.remove_bookmark(id);
+	        }
+
+	        function display_bookmarked(id) {
+	        	var $bookmark_icon = $("#bookmark_"+id);
+	        	
+	        	if ($bookmark_icon.length) {
+	        		$bookmark_icon.data("in-progress", 0);
+	        		$bookmark_icon.data("is-bookmarked", 1);
+	        		$bookmark_icon.addClass("active");
+	        	}
+	        }
+
+	        function display_non_bookmarked(id) {
+	        	var $bookmark_icon = $("#bookmark_"+id);
+	        	
+	        	if ($bookmark_icon.length) {
+	        		$bookmark_icon.data("in-progress", 0);
+	        		$bookmark_icon.data("is-bookmarked", 0);
+	        		$bookmark_icon.removeClass("active");
+	        	}
+	        }
+
+	        function setData(data) {
+	        	$("#sheets_wrapper").html(data);
+	            MathJax.Hub.Queue(['Typeset',MathJax.Hub]);
+	        }
+
+</script>
+</body>
+</html>
